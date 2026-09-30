@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login – Authentication Portal (EXP 6)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="auth-container">
+
+
+    <!-- Login Card -->
+    <div class="auth-card" id="loginCard">
+      <div class="card-header">
+        <h2 class="card-title">Sign In</h2>
+        <p class="card-desc">Enter your email and password to proceed</p>
+      </div>
+
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="loginEmail" class="form-label">Email Address</label>
+          <div class="input-wrap">
+            <span class="input-icon">&#9993;</span>
+            <input type="email" id="loginEmail" class="input-control" placeholder="name@example.com" required autocomplete="email">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="loginPassword" class="form-label">Password</label>
+          <div class="input-wrap">
+            <span class="input-icon">&#128273;</span>
+            <input type="password" id="loginPassword" class="input-control" placeholder="Enter your password" required autocomplete="current-password">
+          </div>
+          <span id="loginError" class="error-text"></span>
+        </div>
+
+        <button type="submit" class="btn-submit">Log In &rarr;</button>
+
+        <div class="divider"></div>
+
+        <!-- Redirect to Registration Webpage -->
+        <a href="register.html" class="btn-submit btn-green">
+          Create New Account (Register) &rarr;
+        </a>
+
+        <div class="footer-link">
+          Demo: <strong>user@example.com</strong> / <strong>Password@123</strong>
+        </div>
+      </form>
+    </div>
+
+    <!-- Logged In Success Screen -->
+    <div class="auth-card" id="dashboardCard" style="display: none;">
+      <div class="success-box">
+        <div class="success-icon">&#10004;</div>
+        <h2 class="card-title">Login Successful!</h2>
+        <p class="card-desc">Welcome back to your verified profile.</p>
+
+        <div class="profile-card">
+          <div class="profile-row">
+            <span class="profile-lbl">Name:</span>
+            <span id="dashName" class="profile-val">Demo User</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-lbl">Verified Email:</span>
+            <span id="dashEmail" class="profile-val" style="color: var(--primary);">user@example.com</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-lbl">Status:</span>
+            <span class="profile-val" style="color: var(--success);">&#10004; Active & Verified</span>
+          </div>
+        </div>
+
+        <button type="button" id="btnLogout" class="btn-submit btn-secondary">Log Out</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

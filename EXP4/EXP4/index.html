@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIT NAGPUR | Vehicle Validator</title>
+    <!-- Outfit Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-container">
+    <header class="app-header">
+        <h1>Vehicle Validator Portal</h1>
+        <p class="subtitle">JavaScript Experiment - 4</p>
+    </header>
+
+    <!-- Main Content Card -->
+    <main class="main-content">
+        <div class="card">
+            <div class="card-header">
+                <h2>Vehicle Registration Validator</h2>
+                <p class="card-desc">Verify Indian vehicle registration formats against official schema rules.</p>
+            </div>
+
+            <div class="form-group">
+                <label for="vehicleInput">Vehicle Registration Number</label>
+                <input type="text" id="vehicleInput" placeholder="e.g., MH12AB1234" maxlength="12">
+                <span class="helper-text">Enter 10-character code without spaces or hyphens</span>
+            </div>
+
+            <!-- Rules Checklist -->
+            <ul class="rules-list">
+                <li class="rule-item invalid" id="ruleNotEmpty">
+                    <span class="indicator"></span>
+                    Registration number is not empty
+                </li>
+                <li class="rule-item invalid" id="ruleLength10">
+                    <span class="indicator"></span>
+                    Length is exactly 10 characters
+                </li>
+                <li class="rule-item invalid" id="ruleState">
+                    <span class="indicator"></span>
+                    First 2 characters are uppercase letters (State Code)
+                </li>
+                <li class="rule-item invalid" id="ruleDistrict">
+                    <span class="indicator"></span>
+                    Next 2 characters are digits (District Code)
+                </li>
+                <li class="rule-item invalid" id="ruleSeries">
+                    <span class="indicator"></span>
+                    Next 2 characters are uppercase letters (Series)
+                </li>
+                <li class="rule-item invalid" id="ruleNumber">
+                    <span class="indicator"></span>
+                    Last 4 characters are digits (Vehicle Number)
+                </li>
+            </ul>
+
+            <button class="action-btn" onclick="validateVehicleForm()">Validate Registration</button>
+
+            <!-- Feedback Banner -->
+            <div id="vehicleFeedback" class="feedback-banner"></div>
+
+            <!-- Parsed details display -->
+            <div id="plateDetails" class="details-panel" style="display: none;">
+                <h3>Parsed Registration Details</h3>
+                <div class="details-grid">
+                    <div class="detail-tile">
+                        <span class="tile-label">State Code</span>
+                        <span class="tile-val" id="detailState">-</span>
+                    </div>
+                    <div class="detail-tile">
+                        <span class="tile-label">District Code</span>
+                        <span class="tile-val" id="detailDistrict">-</span>
+                    </div>
+                    <div class="detail-tile">
+                        <span class="tile-label">Series Code</span>
+                        <span class="tile-val" id="detailSeries">-</span>
+                    </div>
+                    <div class="detail-tile">
+                        <span class="tile-label">Vehicle ID</span>
+                        <span class="tile-val" id="detailId">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="app-footer-brand">
+        <p><b>Developed By</b></p>
+        <p class="developer-name">Jayant Sonsare</p>
+        <p>PRN : <b>24070521058</b></p>
+    </footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+
+    <!-- CSS File -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <form id="signupForm">
+
+        <h2>Registration Form</h2>
+
+        <label for="firstname">Firstname: *</label>
+        <input type="text" id="firstname" name="firstname">
+        <br><br>
+
+        <label for="lastname">Lastname: *</label>
+        <input type="text" id="lastname" name="lastname">
+        <br><br>
+
+        <label>Birthday: *</label>
+
+        <select id="day" name="day">
+            <option value="">Day</option>
+        </select>
+
+        <select id="month" name="month">
+            <option value="">Month</option>
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
+        </select>
+
+        <select id="year" name="year">
+            <option value="">Year</option>
+        </select>
+
+        <br><br>
+
+        <label for="username">Username: *</label>
+        <input type="text" id="username" name="username">
+        <br><br>
+
+        <label for="email">E-mail: *</label>
+        <input type="text" id="email" name="email">
+        <br><br>
+
+        <label for="website">Website:</label>
+        <input type="text" id="website" name="website">
+        <br><br>
+
+        <label for="password">Password: *</label>
+        <input type="password" id="password" name="password">
+        <br><br>
+
+        <label for="repassword">Re-password: *</label>
+        <input type="password" id="repassword" name="repassword">
+        <br><br>
+
+        <input type="checkbox" id="terms" name="terms">
+        <label for="terms">I agree to the terms & conditions *</label>
+
+        <br>
+
+        <button type="submit">Sign Up</button>
+
+        <p id="message"></p>
+
+    </form>
+
+    <!-- JavaScript File -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
+```

@@ -1,0 +1,306 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Admission Form</title>
+
+  <style>
+    :root {
+      --bg-color: #eef3f8;
+      --card-bg: #ffffff;
+      --text-color: #1f2937;
+      --border-color: #d6dee8;
+      --input-bg: #f8fafc;
+      --primary-color: #2563eb;
+      --primary-hover: #1d4ed8;
+      --toggle-bg: #e2e8f0;
+      --toggle-text: #1e293b;
+      --footer-text: #64748b;
+      --shadow: rgba(15, 23, 42, 0.10);
+    }
+
+    body.dark-theme {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --text-color: #f1f5f9;
+      --border-color: #475569;
+      --input-bg: #273449;
+      --primary-color: #3b82f6;
+      --primary-hover: #2563eb;
+      --toggle-bg: #334155;
+      --toggle-text: #f8fafc;
+      --footer-text: #94a3b8;
+      --shadow: rgba(0, 0, 0, 0.30);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 30px 20px;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: 0.3s ease;
+    }
+
+    .header-actions {
+      width: 100%;
+      max-width: 620px;
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 15px;
+    }
+
+    .theme-btn {
+      padding: 9px 18px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--toggle-bg);
+      color: var(--toggle-text);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .theme-btn:hover {
+      transform: translateY(-1px);
+      opacity: 0.9;
+    }
+
+    .form-card {
+      width: 100%;
+      max-width: 620px;
+      padding: 35px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      box-shadow: 0 12px 30px var(--shadow);
+      transition: 0.3s ease;
+    }
+
+    h2 {
+      margin: 0 0 28px;
+      text-align: center;
+      font-size: 28px;
+      color: var(--text-color);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 12px 13px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--input-bg);
+      color: var(--text-color);
+      font-size: 15px;
+      transition: 0.25s ease;
+    }
+
+    input::placeholder {
+      color: #94a3b8;
+    }
+
+    input:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+
+    .submit-btn {
+      width: 100%;
+      margin-top: 8px;
+      padding: 13px;
+      border: none;
+      border-radius: 8px;
+      background: var(--primary-color);
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    footer {
+      margin-top: 25px;
+      text-align: center;
+      color: var(--footer-text);
+      font-size: 14px;
+      font-weight: 500;
+    }
+  </style>
+
+  <script>
+    const localTheme = localStorage.getItem("theme");
+    const sessionTheme = sessionStorage.getItem("theme");
+
+    if (localTheme === "dark" || sessionTheme === "dark") {
+      document.documentElement.classList.add("dark-theme");
+    }
+  </script>
+</head>
+
+<body>
+
+  <div class="header-actions">
+    <button class="theme-btn" id="theme-toggle">Switch Theme</button>
+  </div>
+
+  <div class="form-card">
+    <h2>Student Admission Form</h2>
+
+    <form id="admissionForm">
+
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input
+          type="text"
+          id="fullName"
+          placeholder="Enter full name"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="emailAddress">Email Address</label>
+        <input
+          type="email"
+          id="emailAddress"
+          placeholder="name@example.com"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input
+          type="tel"
+          id="phoneNumber"
+          placeholder="Enter mobile number"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="courseChoice">Desired Course</label>
+
+        <select id="courseChoice" required>
+          <option value="">-- Select a Course --</option>
+          <option value="Computer Science">
+            Computer Science & Engineering
+          </option>
+          <option value="Information Technology">
+            Information Technology
+          </option>
+          <option value="Data Science">
+            Data Science
+          </option>
+          <option value="Cyber Security">
+            Cyber Security
+          </option>
+        </select>
+      </div>
+
+      <button type="submit" class="submit-btn">
+        Submit Application
+      </button>
+
+    </form>
+  </div>
+
+  <footer>
+    Name: Jayant Sonsare | PRN: 24070521058
+  </footer>
+
+  <script>
+    if (document.documentElement.classList.contains("dark-theme")) {
+      document.body.classList.add("dark-theme");
+      document.documentElement.classList.remove("dark-theme");
+    }
+
+    const toggleBtn = document.getElementById("theme-toggle");
+
+    toggleBtn.addEventListener("click", function () {
+      const isDarkNow =
+        document.body.classList.toggle("dark-theme");
+
+      if (isDarkNow) {
+        localStorage.setItem("theme", "dark");
+        sessionStorage.removeItem("theme");
+      } else {
+        sessionStorage.setItem("theme", "light");
+        localStorage.removeItem("theme");
+      }
+    });
+
+    const form = document.getElementById("admissionForm");
+
+    const fields = [
+      "fullName",
+      "emailAddress",
+      "phoneNumber",
+      "courseChoice"
+    ];
+
+    window.addEventListener("DOMContentLoaded", function () {
+      fields.forEach(function (fieldId) {
+        const savedValue =
+          sessionStorage.getItem(fieldId);
+
+        if (savedValue) {
+          document.getElementById(fieldId).value =
+            savedValue;
+        }
+      });
+    });
+
+    fields.forEach(function (fieldId) {
+      const inputElement =
+        document.getElementById(fieldId);
+
+      inputElement.addEventListener("input", function () {
+        sessionStorage.setItem(
+          fieldId,
+          inputElement.value
+        );
+      });
+    });
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      alert("Application Form Submitted Successfully!");
+
+      fields.forEach(function (fieldId) {
+        sessionStorage.removeItem(fieldId);
+      });
+
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>

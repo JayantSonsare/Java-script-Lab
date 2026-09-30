@@ -1,0 +1,276 @@
+:root {
+    --page-bg: #eef6ff;
+    --card-bg: #ffffff;
+    --primary: #2563eb;
+    --primary-600: #1d4ed8;
+    --muted: #6b7280;
+    --border: #dbeafe;
+    --shadow: 0 8px 30px rgba(37, 99, 235, 0.10);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto,
+        'Helvetica Neue', Arial;
+    background: var(--page-bg);
+    margin: 0;
+    padding: 24px;
+    color: #111827;
+}
+
+.container {
+    max-width: 1024px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+}
+
+header h1 {
+    text-align: center;
+    margin: 6px 0 10px;
+    color: var(--primary-600);
+}
+
+.form-card,
+.table-card,
+.operations-card,
+.results-card {
+    margin: 18px 0;
+    padding: 16px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    background: linear-gradient(180deg, #ffffff, #f8fbff);
+}
+
+.row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.row input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #bfdbfe;
+    outline: none;
+}
+
+.row input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+.row input::placeholder {
+    color: #9ca3af;
+}
+
+.btn {
+    padding: 9px 14px;
+    border-radius: 8px;
+    border: 0;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.btn.primary {
+    background: var(--primary);
+    color: #fff;
+}
+
+.btn.success {
+    background: #3b82f6;
+    color: #fff;
+}
+
+.btn.warn {
+    background: #60a5fa;
+    color: #fff;
+}
+
+.btn.danger {
+    background: #dc2626;
+    color: #fff;
+}
+
+.btn.info {
+    background: #0ea5e9;
+    color: #fff;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
+}
+
+.error {
+    color: #b91c1c;
+    margin-top: 8px;
+    font-weight: 600;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table th,
+table td {
+    padding: 12px;
+    border-bottom: 1px solid #e0ecff;
+    text-align: center;
+}
+
+table tbody tr:hover {
+    background: #f0f7ff;
+}
+
+table thead {
+    background: linear-gradient(
+        90deg,
+        var(--primary),
+        var(--primary-600)
+    );
+    color: #fff;
+}
+
+.ops-grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(220px, 1fr)
+    );
+    gap: 12px;
+}
+
+.splice-area input,
+.slice-area input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    border-radius: 8px;
+    border: 1px solid #bfdbfe;
+    outline: none;
+}
+
+.splice-area input:focus,
+.slice-area input:focus {
+    border-color: var(--primary);
+}
+
+.array-views {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.array-views pre {
+    background: linear-gradient(
+        180deg,
+        #f8fbff,
+        #eef6ff
+    );
+    padding: 12px;
+    border-radius: 8px;
+    flex: 1;
+    overflow: auto;
+    border: 1px solid #dbeafe;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(160px, 1fr)
+    );
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.card {
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #f3f8ff
+    );
+    padding: 14px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 700;
+    color: var(--primary-600);
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.08);
+}
+
+.calc-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.calc-row input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #bfdbfe;
+    outline: none;
+}
+
+.calc-row input:focus {
+    border-color: var(--primary);
+}
+
+.more-results {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(220px, 1fr)
+    );
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.muted {
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+ul {
+    padding-left: 18px;
+    margin: 8px 0;
+}
+
+li {
+    margin: 6px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 720px) {
+    .row {
+        flex-direction: column;
+    }
+
+    .array-views {
+        flex-direction: column;
+    }
+
+    .calc-row {
+        flex-direction: column;
+    }
+}
+
+/* Hide the array operations UI from the webpage
+   while keeping JavaScript functionality intact */
+.operations-card {
+    display: none !important;
+}

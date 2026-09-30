@@ -1,0 +1,390 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIT NAGPUR | Password Verification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a, #1d4ed8, #38bdf8);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .container {
+            width: 500px;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 35px 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-2px);
+        }
+
+        h1 {
+            text-align: center;
+            color: #0f172a;
+            font-size: 26px;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            font-size: 15px;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 14px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 45px 12px 14px;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s ease;
+            background: #f8fafc;
+        }
+
+        input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+            background: #ffffff;
+        }
+
+        .toggle-btn {
+            position: absolute;
+            right: 14px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            border-radius: 50%;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .toggle-btn:hover {
+            background-color: #f1f5f9;
+            color: #1e293b;
+        }
+
+        .toggle-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Strength Meter CSS */
+        .strength-meter {
+            margin-top: 10px;
+        }
+
+        .strength-bar-container {
+            height: 6px;
+            background-color: #e2e8f0;
+            border-radius: 3px;
+            overflow: hidden;
+            display: flex;
+            gap: 2px;
+        }
+
+        .strength-segment {
+            flex: 1;
+            height: 100%;
+            background-color: transparent;
+            transition: background-color 0.3s ease;
+        }
+
+        .strength-text {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 5px;
+            color: #64748b;
+        }
+
+        .strength-label span {
+            transition: color 0.3s ease;
+        }
+
+        /* Password Rules Validation Checklist */
+        .rules-list {
+            margin-top: 15px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .rule-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13.5px;
+            color: #64748b;
+            margin-bottom: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .rule-item svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            transition: transform 0.2s ease, fill 0.3s ease;
+        }
+
+        .rule-item.valid {
+            color: #10b981;
+            font-weight: 500;
+        }
+
+        .rule-item.valid svg {
+            fill: #10b981;
+            transform: scale(1.1);
+        }
+
+        .rule-item.invalid {
+            color: #64748b;
+        }
+
+        .rule-item.invalid svg {
+            fill: #cbd5e1;
+        }
+
+        /* Confirm Password Verification Feedback */
+        .feedback-message {
+            font-size: 13px;
+            margin-top: 6px;
+            font-weight: 500;
+            display: none;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .feedback-message.match {
+            color: #10b981;
+            display: flex;
+        }
+
+        .feedback-message.mismatch {
+            color: #ef4444;
+            display: flex;
+        }
+
+        button.submit-btn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 25px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+        }
+
+        button.submit-btn:hover {
+            background: #1d4ed8;
+            box-shadow: 0 6px 15px rgba(29, 78, 216, 0.3);
+            transform: translateY(-1px);
+        }
+
+        button.submit-btn:active {
+            transform: translateY(1px);
+        }
+
+        /* Alert Notifications */
+        .alert-box {
+            margin-top: 20px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .alert-success {
+            background-color: #ecfdf5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+
+        .alert-error {
+            background-color: #fef2f2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        .footer {
+            margin-top: 35px;
+            text-align: center;
+            border-top: 2px solid #f1f5f9;
+            padding-top: 20px;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .footer b {
+            color: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Password Verification</h1>
+    <p class="subtitle">Secure Registration Portal</p>
+
+    <form id="verificationForm" onsubmit="return handleFormSubmit(event)">
+        
+        <label for="username">Enter Username</label>
+        <div class="input-wrapper">
+            <input type="text" id="username" placeholder="Enter username" required autocomplete="username">
+        </div>
+
+        <label for="password">Enter Password</label>
+        <div class="input-wrapper">
+            <input type="password" id="password" placeholder="Enter strong password" required autocomplete="new-password">
+            <button type="button" class="toggle-btn" id="togglePasswordBtn" title="Toggle password visibility">
+                <!-- Eye Icon (default visible) -->
+                <svg id="eyeOpenIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+                <!-- Eye Off Icon (hidden initially) -->
+                <svg id="eyeClosedIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Password Strength Meter -->
+        <div class="strength-meter">
+            <div class="strength-bar-container">
+                <div class="strength-segment" id="strengthSeg1"></div>
+                <div class="strength-segment" id="strengthSeg2"></div>
+                <div class="strength-segment" id="strengthSeg3"></div>
+            </div>
+            <div class="strength-text">
+                <span>Password Strength:</span>
+                <span class="strength-label" id="strengthLabel"><span style="color: #cbd5e1;">Too Weak</span></span>
+            </div>
+        </div>
+
+        <!-- Real-time validation checklist -->
+        <ul class="rules-list">
+            <li class="rule-item invalid" id="ruleLength">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 8v4M12 16h.01" stroke="#fff" stroke-width="2" stroke-linecap="round"></path>
+                </svg>
+                At least 8 characters long
+            </li>
+            <li class="rule-item invalid" id="ruleUppercase">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 8v4M12 16h.01" stroke="#fff" stroke-width="2" stroke-linecap="round"></path>
+                </svg>
+                At least one uppercase letter (A-Z)
+            </li>
+            <li class="rule-item invalid" id="ruleLowercase">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 8v4M12 16h.01" stroke="#fff" stroke-width="2" stroke-linecap="round"></path>
+                </svg>
+                At least one lowercase letter (a-z)
+            </li>
+            <li class="rule-item invalid" id="ruleNumber">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 8v4M12 16h.01" stroke="#fff" stroke-width="2" stroke-linecap="round"></path>
+                </svg>
+                At least one digit (0-9)
+            </li>
+            <li class="rule-item invalid" id="ruleSpecial">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 8v4M12 16h.01" stroke="#fff" stroke-width="2" stroke-linecap="round"></path>
+                </svg>
+                At least one special character (@, $, !, %, *, ?, &)
+            </li>
+        </ul>
+
+        <label for="confirmPassword">Confirm Password</label>
+        <div class="input-wrapper">
+            <input type="password" id="confirmPassword" placeholder="Re-enter password" required autocomplete="new-password">
+            <button type="button" class="toggle-btn" id="toggleConfirmPasswordBtn" title="Toggle password visibility">
+                <!-- Eye Icon (default visible) -->
+                <svg id="confirmEyeOpenIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+                <!-- Eye Off Icon (hidden initially) -->
+                <svg id="confirmEyeClosedIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Confirm Password Feedback -->
+        <div id="confirmFeedback" class="feedback-message"></div>
+
+        <button type="submit" class="submit-btn">Register User</button>
+    </form>
+
+    <!-- Submission feedback alert container -->
+    <div id="alertBox" class="alert-box"></div>
+
+    <div class="footer">
+        <p><b>Developed By</b></p>
+        <p><b>Jayant Sonsare</b></p>
+        <p>PRN : <b>24070521058</b></p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

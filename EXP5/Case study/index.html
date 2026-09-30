@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Student Marks Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Student Marks Management System</h1>
+    </header>
+
+    <section class="form-card">
+      <h2>Add Student</h2>
+      <div class="row">
+        <input type="text" id="studentName" placeholder="Student Name">
+        <input type="number" id="studentMarks" placeholder="Marks (0-100)">
+        <button id="addBtn" class="btn primary">Add Student</button>
+      </div>
+      <div id="error" class="error"></div>
+    </section>
+
+    <section class="table-card">
+      <h2>Students</h2>
+      <table id="studentsTable">
+        <thead>
+          <tr>
+            <th>Sr. No.</th>
+            <th>Student Name</th>
+            <th>Marks</th>
+            <th>Grade</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section class="operations-card">
+      <h2>Array Operations</h2>
+      <div class="ops-grid">
+        <div>
+          <button id="pushBtn" class="btn success">Push</button>
+          <button id="popBtn" class="btn warn">Pop</button>
+        </div>
+        <div>
+          <button id="unshiftBtn" class="btn success">Unshift</button>
+          <button id="shiftBtn" class="btn warn">Shift</button>
+        </div>
+        <div class="splice-area">
+          <input type="number" id="spliceIndex" placeholder="Index (0-based)">
+          <input type="text" id="spliceName" placeholder="Name (for splice)">
+          <input type="number" id="spliceMarks" placeholder="Marks">
+          <button id="spliceBtn" class="btn danger">Splice</button>
+        </div>
+        <div class="slice-area">
+          <input type="number" id="sliceStart" placeholder="Start">
+          <input type="number" id="sliceEnd" placeholder="End">
+          <button id="sliceBtn" class="btn info">Slice (copy)</button>
+        </div>
+      </div>
+
+      <div class="array-views">
+        <div>
+          <h3>Current Array</h3>
+          <pre id="beforeArray">[]</pre>
+        </div>
+        <div>
+          <h3>After Operation</h3>
+          <pre id="afterArray">[]</pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="results-card">
+      <h2>Results</h2>
+      <div class="results-grid">
+        <div class="card">Total Students<br><span id="totalStudents">0</span></div>
+        <div class="card">Total Marks<br><span id="totalMarks">0</span></div>
+        <div class="card">Average<br><span id="averageMarks">0</span></div>
+        <div class="card">Maximum<br><span id="maxMarks">0</span></div>
+        <div class="card">Minimum<br><span id="minMarks">0</span></div>
+      </div>
+
+      <div class="calc-row">
+        <input type="number" id="passMark" placeholder="Passing mark (default 40)" value="40">
+        <button id="calcBtn" class="btn primary">Calculate Results</button>
+      </div>
+
+      <div class="more-results">
+        <div>
+          <h3>Students who passed</h3>
+          <ul id="passedList"></ul>
+        </div>
+        <div>
+          <h3>Marks after map() (+5 grace, max 100)</h3>
+          <ul id="mappedMarks"></ul>
+        </div>
+        <div>
+          <h3>Total using reduce()</h3>
+          <div id="reducedTotal">0</div>
+        </div>
+        <div>
+          <h3>forEach() display</h3>
+          <ul id="forEachList"></ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p class="muted">Demo: JavaScript array methods for college practical.</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

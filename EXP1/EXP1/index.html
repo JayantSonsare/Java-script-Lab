@@ -1,0 +1,213 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIT NAGPUR | Student Registration</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI,Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#1d4ed8,#38bdf8);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+}
+
+.container{
+    width:700px;
+    background:white;
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 15px 35px rgba(0,0,0,.3);
+}
+
+h1{
+    text-align:center;
+    color:#0f172a;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    text-align:center;
+    color:gray;
+    margin-bottom:30px;
+    font-size:18px;
+}
+
+label{
+    display:block;
+    margin-top:15px;
+    margin-bottom:8px;
+    font-weight:bold;
+    color:#1e293b;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:14px;
+    border:1px solid #cbd5e1;
+    border-radius:10px;
+    font-size:16px;
+    transition:.3s;
+}
+
+textarea{
+    resize:none;
+    height:90px;
+}
+
+input:focus,
+textarea:focus{
+    outline:none;
+    border-color:#2563eb;
+    box-shadow:0 0 10px rgba(37,99,235,.4);
+}
+
+button{
+    width:100%;
+    padding:15px;
+    margin-top:25px;
+    background:#2563eb;
+    color:white;
+    font-size:18px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#1e40af;
+    transform:scale(1.02);
+}
+
+table{
+    width:100%;
+    margin-top:30px;
+    border-collapse:collapse;
+}
+
+table,th,td{
+    border:1px solid #d1d5db;
+}
+
+th{
+    background:#2563eb;
+    color:white;
+    padding:12px;
+}
+
+td{
+    padding:12px;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+.footer{
+    margin-top:35px;
+    text-align:center;
+    border-top:2px solid #ddd;
+    padding-top:20px;
+    color:#555;
+    font-size:15px;
+}
+
+.footer b{
+    color:#1d4ed8;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Welcome to SIT NAGPUR</h1>
+
+<p class="subtitle">Student Information Portal</p>
+
+<label>Enter Name</label>
+<input type="text" id="name" placeholder="Enter Name">
+
+<label>Enter Age</label>
+<input type="number" id="age" placeholder="Enter Age">
+
+<label>Enter PRN</label>
+<input type="text" id="prn" placeholder="Enter PRN">
+
+<label>Enter Contact Number</label>
+<input type="text" id="contact" placeholder="Enter Contact Number">
+
+<label>Enter Email</label>
+<input type="email" id="email" placeholder="Enter Email">
+
+<label>Enter Address</label>
+<textarea id="address" placeholder="Enter Address"></textarea>
+
+<button onclick="submitForm()">Submit</button>
+
+<table id="result" style="display:none;">
+
+<tr>
+<th>Field</th>
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Name</td>
+<td id="rname"></td>
+</tr>
+
+<tr>
+<td>Age</td>
+<td id="rage"></td>
+</tr>
+
+<tr>
+<td>PRN</td>
+<td id="rprn"></td>
+</tr>
+
+<tr>
+<td>Contact Number</td>
+<td id="rcontact"></td>
+</tr>
+
+<tr>
+<td>Email</td>
+<td id="remail"></td>
+</tr>
+
+<tr>
+<td>Address</td>
+<td id="raddress"></td>
+</tr>
+
+</table>
+
+<div class="footer">
+    <p><b>Developed By</b></p>
+    <p><b>Jayant Sonsare</b></p>
+    <p>PRN : <b>24070521058</b></p>
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

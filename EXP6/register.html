@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Registration & Email Verification Portal (EXP 6)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="auth-container">
+
+
+    <!-- Registration Card -->
+    <div class="auth-card">
+      <!-- Progress Stepper -->
+      <nav class="stepper" aria-label="Registration Steps">
+        <div class="stepper-line"></div>
+        <div class="step active" id="step1Dot">
+          <div class="step-circle">1</div>
+          <span class="step-label">Details</span>
+        </div>
+        <div class="step" id="step2Dot">
+          <div class="step-circle">2</div>
+          <span class="step-label">Email OTP</span>
+        </div>
+        <div class="step" id="step3Dot">
+          <div class="step-circle">3</div>
+          <span class="step-label">Password</span>
+        </div>
+      </nav>
+
+      <!-- =========================================================
+           STEP 1: Registration Form Details & Email Format Validation
+           ========================================================= -->
+      <section id="step1Details" class="step-section active">
+        <div class="card-header">
+          <h2 class="card-title">Registration Form</h2>
+          <p class="card-desc">Enter your user information and valid email</p>
+        </div>
+
+        <form id="formDetails" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="regFirstname" class="form-label">First Name</label>
+              <div class="input-wrap">
+                <span class="input-icon">&#128100;</span>
+                <input type="text" id="regFirstname" class="input-control" placeholder="First name" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="regLastname" class="form-label">Surname</label>
+              <div class="input-wrap">
+                <span class="input-icon">&#128100;</span>
+                <input type="text" id="regLastname" class="input-control" placeholder="Surname" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="regEmail" class="form-label">Email Address (Main Verification)</label>
+            <div class="input-wrap">
+              <span class="input-icon">&#9993;</span>
+              <input type="email" id="regEmail" class="input-control" placeholder="user@domain.com" required autocomplete="email">
+            </div>
+            <span id="regEmailError" class="error-text"></span>
+
+            <!-- Live Email Rules Checklist -->
+            <div class="rules-card">
+              <div id="ruleAt" class="rule-item"><span class="icon">&bull;</span> Contains username and '@' symbol</div>
+              <div id="ruleDomain" class="rule-item"><span class="icon">&bull;</span> Contains domain (e.g. gmail, yahoo)</div>
+              <div id="ruleTld" class="rule-item"><span class="icon">&bull;</span> Contains extension (e.g. .com, .edu, .in)</div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-submit">Continue to Email OTP &rarr;</button>
+
+          <div class="footer-link">
+            Already registered? <a href="index.html">Log In here</a>
+          </div>
+        </form>
+      </section>
+
+      <!-- =========================================================
+           STEP 2: 6-Digit Email OTP Verification Screen
+           ========================================================= -->
+      <section id="step2OTP" class="step-section">
+        <div class="card-header" style="text-align: center;">
+          <h2 class="card-title">Verify Email Address</h2>
+          <p class="card-desc">Enter security code sent to <strong id="targetEmailText" style="color: var(--primary);">email@domain.com</strong></p>
+        </div>
+
+        <!-- Simulated Email Inbox Banner -->
+        <div class="email-sim-banner">
+          <div>
+            <strong>&#9993; Incoming Verification Email:</strong><br>
+            <span style="font-size: 11px;">To: <span id="simEmailTo">user@domain.com</span></span>
+          </div>
+          <div>
+            Code: <span id="simEmailCode" class="otp-pill">123456</span>
+          </div>
+        </div>
+
+        <form id="formOtpVerify" novalidate>
+          <div class="otp-group">
+            <input type="text" maxlength="1" class="otp-box" inputmode="numeric" required>
+            <input type="text" maxlength="1" class="otp-box" inputmode="numeric" required>
+            <input type="text" maxlength="1" class="otp-box" inputmode="numeric" required>
+            <input type="text" maxlength="1" class="otp-box" inputmode="numeric" required>
+            <input type="text" maxlength="1" class="otp-box" inputmode="numeric" required>
+            <input type="text" maxlength="1" class="otp-box" inputmode="numeric" required>
+          </div>
+
+          <div style="text-align: center; margin-bottom: 8px;">
+            <span id="otpErrorText" class="error-text"></span>
+          </div>
+
+          <div class="resend-box">
+            Didn't receive the email?
+            <button type="button" id="btnResend" class="resend-btn" disabled>Resend Code</button>
+            <span id="resendTimerSpan">(in 30s)</span>
+          </div>
+
+          <button type="submit" class="btn-submit">Verify Code & Proceed &rarr;</button>
+          <button type="button" id="btnBackToStep1" class="btn-submit btn-secondary">Change Details</button>
+        </form>
+      </section>
+
+      <!-- =========================================================
+           STEP 3: Set Password & Strength Validation
+           ========================================================= -->
+      <section id="step3Password" class="step-section">
+        <div class="card-header">
+          <h2 class="card-title">Set Password</h2>
+          <p class="card-desc">Create a secure password for your verified email</p>
+        </div>
+
+        <form id="formPasswordSet" novalidate>
+          <div class="form-group">
+            <label for="newPass" class="form-label">New Password</label>
+            <div class="input-wrap">
+              <span class="input-icon">&#128273;</span>
+              <input type="password" id="newPass" class="input-control" placeholder="Create password" required autocomplete="new-password">
+            </div>
+
+            <!-- Password strength bars -->
+            <div class="strength-bars">
+              <div id="bar1" class="strength-bar"></div>
+              <div id="bar2" class="strength-bar"></div>
+              <div id="bar3" class="strength-bar"></div>
+            </div>
+
+            <!-- Password criteria -->
+            <div class="rules-card">
+              <div id="ruleLen" class="rule-item"><span class="icon">&bull;</span> At least 8 characters</div>
+              <div id="ruleUpper" class="rule-item"><span class="icon">&bull;</span> At least 1 uppercase (A-Z)</div>
+              <div id="ruleNum" class="rule-item"><span class="icon">&bull;</span> At least 1 number (0-9)</div>
+              <div id="ruleSpecial" class="rule-item"><span class="icon">&bull;</span> At least 1 special symbol (!@#$%^&*)</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPass" class="form-label">Confirm Password</label>
+            <div class="input-wrap">
+              <span class="input-icon">&#128274;</span>
+              <input type="password" id="confirmPass" class="input-control" placeholder="Confirm password" required autocomplete="new-password">
+            </div>
+            <span id="passMatchError" class="error-text"></span>
+          </div>
+
+          <button type="submit" class="btn-submit btn-green">Complete Registration & Finish &rarr;</button>
+        </form>
+      </section>
+
+      <!-- =========================================================
+           STEP 4: Registration Success Confirmation
+           ========================================================= -->
+      <section id="stepSuccess" class="step-section">
+        <div class="success-box">
+          <div class="success-icon">&#10004;</div>
+          <h2 class="card-title">Registration Complete!</h2>
+          <p class="card-desc">Your email has been verified and registered.</p>
+
+          <div class="profile-card">
+            <div class="profile-row">
+              <span class="profile-lbl">Name:</span>
+              <span id="savedName" class="profile-val">Alex User</span>
+            </div>
+            <div class="profile-row">
+              <span class="profile-lbl">Verified Email:</span>
+              <span id="savedEmail" class="profile-val" style="color: var(--primary);">email@domain.com</span>
+            </div>
+            <div class="profile-row">
+              <span class="profile-lbl">Status:</span>
+              <span class="profile-val" style="color: var(--success);">&#10004; Active & Verified</span>
+            </div>
+          </div>
+
+          <a href="index.html" class="btn-submit">
+            Back to Log In &rarr;
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

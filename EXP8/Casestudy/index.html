@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Product Filter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>E-Commerce Product Filter</h1>
+
+        <form id="searchForm">
+
+            <label for="searchBox">Search Product</label>
+            <input type="text" id="searchBox" placeholder="Enter product name">
+
+            <p id="errorMessage"></p>
+
+            <label for="category">Select Category</label>
+            <select id="category">
+                <option value="All">All Categories</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Clothing">Clothing</option>
+                <option value="Books">Books</option>
+                <option value="Accessories">Accessories</option>
+            </select>
+
+            <button type="submit">Search</button>
+            <button type="button" id="clearBtn">Clear Filter</button>
+
+        </form>
+
+        <h2>Products</h2>
+
+        <div id="productList" class="products"></div>
+
+        <p id="noProducts"></p>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

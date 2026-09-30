@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seminar Schedule Planner</title>
+
+  <style>
+    :root {
+      --bg-color: #eef3f8;
+      --card-bg: #ffffff;
+      --text-color: #1e293b;
+      --border-color: #cbd5e1;
+      --header-bg: #1e3a8a;
+      --header-text: #ffffff;
+      --row-hover: #eff6ff;
+      --primary-color: #2563eb;
+      --primary-hover: #1d4ed8;
+      --button-bg: #e2e8f0;
+      --button-text: #1e293b;
+      --footer-text: #64748b;
+      --shadow: rgba(15, 23, 42, 0.12);
+    }
+
+    body.dark-theme {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --text-color: #f1f5f9;
+      --border-color: #475569;
+      --header-bg: #1d4ed8;
+      --header-text: #ffffff;
+      --row-hover: #273449;
+      --primary-color: #3b82f6;
+      --primary-hover: #2563eb;
+      --button-bg: #334155;
+      --button-text: #f8fafc;
+      --footer-text: #94a3b8;
+      --shadow: rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 30px 20px;
+      min-height: 100vh;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      transition: 0.3s ease;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      color: var(--text-color);
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    button {
+      padding: 9px 16px;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    #theme-toggle {
+      background: var(--button-bg);
+      color: var(--button-text);
+    }
+
+    #clear-data {
+      background: #dc2626;
+      color: white;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      opacity: 0.9;
+    }
+
+    .schedule-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px var(--shadow);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      border: 1px solid var(--border-color);
+      padding: 14px 12px;
+      text-align: center;
+    }
+
+    thead th {
+      background: var(--header-bg);
+      color: var(--header-text);
+      font-weight: 600;
+    }
+
+    .day {
+      font-weight: 700;
+      background: var(--row-hover);
+      width: 15%;
+    }
+
+    .time {
+      width: 15%;
+      font-weight: 600;
+    }
+
+    .topic {
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .topic:hover {
+      background: var(--row-hover);
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    .info {
+      margin-top: 18px;
+      padding: 14px 18px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      text-align: center;
+      color: var(--footer-text);
+    }
+
+    footer {
+      margin-top: 25px;
+      text-align: center;
+      color: var(--footer-text);
+      font-size: 14px;
+    }
+
+    @media (max-width: 700px) {
+      .top-bar {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+      }
+
+      .schedule-card {
+        overflow-x: auto;
+      }
+
+      table {
+        min-width: 700px;
+      }
+    }
+  </style>
+
+  <script>
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "dark") {
+      document.documentElement.classList.add("dark-theme");
+    }
+  </script>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="top-bar">
+      <h1>Seminar Schedule Planner</h1>
+
+      <div class="buttons">
+        <button id="theme-toggle">Switch Theme</button>
+        <button id="clear-data">Clear Data</button>
+      </div>
+    </div>
+
+    <div class="schedule-card">
+
+      <table>
+        <thead>
+          <tr>
+            <th rowspan="2">Day</th>
+            <th colspan="2">Schedule</th>
+            <th rowspan="2">Topic</th>
+          </tr>
+
+          <tr>
+            <th>Begin</th>
+            <th>End</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td class="day" rowspan="2">Monday</td>
+            <td class="time" rowspan="2">8:00 a.m.</td>
+            <td class="time" rowspan="2">5:00 p.m.</td>
+            <td class="topic" data-topic="Introduction to XML">
+              Introduction to XML
+            </td>
+          </tr>
+
+          <tr>
+            <td class="topic" data-topic="Validity: DTD and Relax NG">
+              Validity: DTD and Relax NG
+            </td>
+          </tr>
+
+          <tr>
+            <td class="day" rowspan="3">Tuesday</td>
+            <td class="time">8:00 a.m.</td>
+            <td class="time">11:00 a.m.</td>
+            <td class="topic" data-topic="XPath">
+              XPath
+            </td>
+          </tr>
+
+          <tr>
+            <td class="time">11:00 a.m.</td>
+            <td class="time">2:00 p.m.</td>
+            <td class="topic" data-topic="XSL Transformations">
+              XSL Transformations
+            </td>
+          </tr>
+
+          <tr>
+            <td class="time">2:00 p.m.</td>
+            <td class="time">5:00 p.m.</td>
+            <td class="topic" data-topic="XSL Transformations">
+              XSL Transformations
+            </td>
+          </tr>
+
+          <tr>
+            <td class="day">Wednesday</td>
+            <td class="time">8:00 a.m.</td>
+            <td class="time">12:00 p.m.</td>
+            <td class="topic" data-topic="XSL Formatting Objects">
+              XSL Formatting Objects
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+
+    <div class="info" id="last-topic">
+      Click on any topic to view its schedule.
+    </div>
+
+    <footer>
+      Seminar Schedule Planner | JavaScript Practical
+    </footer>
+
+  </div>
+
+  <script>
+    if (document.documentElement.classList.contains("dark-theme")) {
+      document.body.classList.add("dark-theme");
+      document.documentElement.classList.remove("dark-theme");
+    }
+
+    const themeButton = document.getElementById("theme-toggle");
+    const clearButton = document.getElementById("clear-data");
+    const topics = document.querySelectorAll(".topic");
+    const lastTopic = document.getElementById("last-topic");
+
+    themeButton.addEventListener("click", function () {
+
+      const isDark =
+        document.body.classList.toggle("dark-theme");
+
+      if (isDark) {
+        localStorage.setItem("theme", "dark");
+      } else {
+        localStorage.setItem("theme", "light");
+      }
+
+    });
+
+    topics.forEach(function (topic) {
+
+      topic.addEventListener("click", function () {
+
+        const selectedTopic = topic.getAttribute("data-topic");
+
+        sessionStorage.setItem("lastTopic", selectedTopic);
+
+        alert("Selected Topic: " + selectedTopic);
+
+        lastTopic.textContent =
+          "Last Selected Topic: " + selectedTopic;
+
+      });
+
+    });
+
+    window.addEventListener("DOMContentLoaded", function () {
+
+      const savedTopic =
+        sessionStorage.getItem("lastTopic");
+
+      if (savedTopic) {
+        lastTopic.textContent =
+          "Last Selected Topic: " + savedTopic;
+      }
+
+    });
+
+    clearButton.addEventListener("click", function () {
+
+      localStorage.clear();
+      sessionStorage.clear();
+
+      lastTopic.textContent =
+        "All saved data has been cleared.";
+
+      alert("Local Storage and Session Storage cleared!");
+
+    });
+  </script>
+
+</body>
+</html>

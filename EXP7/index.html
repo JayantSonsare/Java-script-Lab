@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To Do List</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f2f2f2;
+            text-align: center;
+        }
+
+        .container {
+            width: 400px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        input {
+            padding: 10px;
+            width: 220px;
+        }
+
+        button {
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #addBtn {
+            background: green;
+            color: white;
+        }
+
+        .edit {
+            background: orange;
+        }
+
+        .delete {
+            background: red;
+            color: white;
+        }
+
+        li {
+            list-style: none;
+            margin: 10px 0;
+            padding: 10px;
+            background: #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>To Do List</h1>
+
+        <input type="text" id="taskInput" placeholder="Enter task">
+        <button id="addBtn">Add</button>
+
+        <ul id="taskList"></ul>
+
+    </div>
+
+    <script>
+
+        let input = document.getElementById("taskInput");
+        let addBtn = document.getElementById("addBtn");
+        let taskList = document.getElementById("taskList");
+
+        addBtn.addEventListener("click", function() {
+
+            let task = input.value;
+
+            if (task == "") {
+                alert("Enter a task");
+                return;
+            }
+
+
+            let li = document.createElement("li");
+            let span = document.createElement("span");
+            let editBtn = document.createElement("button");
+            let deleteBtn = document.createElement("button");
+
+                      span.innerText = task;
+
+            editBtn.innerText = "Edit";
+            editBtn.className = "edit";
+
+            deleteBtn.innerText = "Delete";
+            deleteBtn.className = "delete";
+
+
+            editBtn.addEventListener("click", function() {
+
+                let newTask = prompt("Edit task:", span.innerText);
+
+                if (newTask != null && newTask != "") {
+                    span.innerText = newTask;
+                }
+
+            });
+
+
+            deleteBtn.addEventListener("click", function() {
+                li.remove();
+            });
+
+
+            li.appendChild(span);
+            li.appendChild(editBtn);
+            li.appendChild(deleteBtn);
+
+            // Add li to ul
+            taskList.appendChild(li);
+
+            // Clear input
+            input.value = "";
+        });
+
+    </script>
+
+</body>
+</html>

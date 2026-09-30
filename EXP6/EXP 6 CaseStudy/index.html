@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information Extraction System</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>Student Information Extraction System</h1>
+            <p>
+                Extract, validate and process student information using
+                JavaScript and Regular Expressions
+            </p>
+        </header>
+
+        <section class="input-section">
+
+            <h2>Enter Student Information</h2>
+
+            <textarea id="studentText">Student Name: Jayant Sonsare
+Roll Number: 58
+Email: jayantsonsare@gmail.com
+Phone: 9876543210
+Department: Computer Science</textarea>
+
+            <button onclick="processData()">Process Information</button>
+
+        </section>
+
+        <section class="results">
+
+            <h2>Extracted Information</h2>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Information</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Student Name</td>
+                            <td id="studentName">-</td>
+                        </tr>
+
+                        <tr>
+                            <td>Roll Number</td>
+                            <td id="rollNumber">-</td>
+                        </tr>
+
+                        <tr>
+                            <td>Email Address</td>
+                            <td id="email">-</td>
+                        </tr>
+
+                        <tr>
+                            <td>Email Validation</td>
+                            <td id="emailValidation">-</td>
+                        </tr>
+
+                        <tr>
+                            <td>Phone Number</td>
+                            <td id="phone">-</td>
+                        </tr>
+
+                        <tr>
+                            <td>Phone Validation</td>
+                            <td id="phoneValidation">-</td>
+                        </tr>
+
+                        <tr>
+                            <td>Department</td>
+                            <td id="department">-</td>
+                        </tr>
+
+                        <tr>
+                            <td>Total Words</td>
+                            <td id="wordCount">-</td>
+                        </tr>
+
+                        <tr>
+                            <td>Total Characters</td>
+                            <td id="characterCount">-</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <section class="processing">
+
+            <h2>Text Processing</h2>
+
+            <div class="card">
+
+                <h3>Lowercase Text</h3>
+
+                <div id="lowercaseText" class="output">
+                    -
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Department Replacement</h3>
+
+                <div id="replacedText" class="output">
+                    -
+                </div>
+
+            </div>
+
+        </section>
+
+        <footer>
+            <p>Student Information Extraction System | JavaScript Case Study</p>
+        </footer>
+
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>

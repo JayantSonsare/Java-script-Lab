@@ -1,7 +1,7 @@
 ﻿# JavaScript Practical Portfolio — Semester V
 
 **Student Name:** Jayant Sonsare  
-**PRN:** 24070521058  
+**PRN:** 24070521061  
 **Institution:** Symbiosis Institute of Technology (SIT), Nagpur  
 **Course:** JavaScript Programming Laboratory (Semester V)  
 **GitHub Repository:** [JayantSonsare/Java-script-Lab](https://github.com/JayantSonsare/Java-script-Lab)
@@ -159,5 +159,5 @@ Individual, college-submission-ready A4 PDF reports generated from each experime
 ## Author
 
 - **Jayant Sonsare**
-- **PRN:** 24070521058
+- **PRN:** 24070521061
 - **GitHub:** [@JayantSonsare](https://github.com/JayantSonsare)
